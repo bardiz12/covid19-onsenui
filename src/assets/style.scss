@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+html{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.m-5{
+    margin: 5px;
+}
+.toolbar{
+    background-color: #13BDE2;
+    border:none !important;
+    &__title{
+        color: white;
+    }
+    
+}
+
+.card-border-bottom{
+    &-red{
+        border-bottom: 1px solid #F76379;
+    }
+    &-blue{
+        border-bottom: 1px solid #80D2FF;
+    }
+    &-green{
+        border-bottom: 1px solid #6DBFBA;
+    }
+    &-yellow{
+        border-bottom: 1px solid #FFD484;
+    }
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-big{
+    font-size: xx-large;
+}
+
+.p-start{
+    padding-left:10px;
+    padding-top:8px;
+    padding-right:10px;
+}
+
+.p-full{
+    padding:10px;
+}
+
+.text-small{
+    font-size: small;
+}
+
+.flex-2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rounded-img{
+    border-radius: 50%;
+}
+
+.about-img{
+    width: 150px;
+    text-align: center;
+    float: right;
+}
+
+a {
+    text-decoration: none;;
+}
+
+.text-center{
+    text-align: center;
+}
