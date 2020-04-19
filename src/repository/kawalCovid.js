@@ -1,9 +1,9 @@
 
 import axios from "axios"
-const baseURL = "https://cors-anywhere.herokuapp.com/https://api.kawalcorona.com/";
+const baseURL = "https://linebotspam.herokuapp.com/covid/";
 const client = axios.create({
     baseURL: baseURL,
-    timeout: 3000,
+    timeout: 10000,
 })
 
 export default {

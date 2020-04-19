@@ -1,24 +1,15 @@
 <template>
   <div id="app">
     <v-ons-page>
-      <v-ons-toolbar>
-        <div class="center">{{title}}</div>
-      </v-ons-toolbar>
+     
 
-      <v-ons-tabbar swipeable position="bottom">
-        <template slot="pages">
-          <Home/>
-          <PerProvinceVue/>
-          <About/>
-        </template>
-        <v-ons-tab
-          v-for="(tab, i) in tabs "
-          :key="i + 999999"
-          :icon="tabs[i].icon"
-          :label="tabs[i].label"
-          :badge="tabs[i].badge"
-        ></v-ons-tab>
-      </v-ons-tabbar>
+      <v-ons-tabbar swipeable position="item"
+      :tabs="tabs"
+      :visible="true"
+      :index.sync="activeIndex"
+      @click="changeTitle"
+    ></v-ons-tabbar>
+
     </v-ons-page>
   </div>
 </template>
@@ -26,15 +17,15 @@
 <script>
 import Home from "./pages/Home";
 import About from "./pages/About";
-import PerProvinceVue from "./pages/PerProvince.vue";
+import DataProvince from "./pages/DataProvince.vue";
 export default {
   name: "App",
-  components:{
-    Home,
-    About,
-    PerProvinceVue
+
+  methods:{
+    changeTitle(){
+      window.document.title = "Covid19Apps - " + this.tabs[this.activeIndex].label;
+    }
   },
-  mounted() {},
   data() {
     return {
       activeIndex: 0,
@@ -45,7 +36,7 @@ export default {
           label: "Home",
           page: Home,
           props: {
-            myProp: "This is a page prop!"
+            title: "Home"
           },
           key: "homePage"
         },
@@ -53,9 +44,9 @@ export default {
           icon: "md-book",
           title: "Data Provinsi",
           label: "Data Provinsi",
-          page: PerProvinceVue,
+          page: DataProvince,
           props: {
-            myProp: "This is a page prop!"
+            title: "Data Provinsi",
           },
           key: "provinciPage"
         },
@@ -65,7 +56,7 @@ export default {
           label: "About",
           page: About,
           props: {
-            myProp: "This is a page prop!"
+            title: "About",
           },
           key: "aboutPage"
         }
@@ -74,7 +65,9 @@ export default {
   },
   computed: {
     title() {
-      return this.tabs[this.activeIndex].title;
+      window.document.title = "Covid19Apps - " + this.tabs[this.activeIndex].label;
+      console.log(window.document.title);
+      return this.tabs[this.activeIndex].label;
     }
   }
 };

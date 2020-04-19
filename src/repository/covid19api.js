@@ -8,5 +8,8 @@ const client = axios.create({
 export default {
     getConfirmed(country){
         return client.get("/countries/" + country + "/confirmed")
+    },
+    getCase(country){
+        return client.get("countries/" + country)
     }
 }

@@ -18,16 +18,31 @@ html{
 
 .card-border-bottom{
     &-red{
-        border-bottom: 1px solid #F76379;
+        border-bottom: 10px solid #F76379;
     }
     &-blue{
-        border-bottom: 1px solid #80D2FF;
+        border-bottom: 10px solid #80D2FF;
     }
     &-green{
-        border-bottom: 1px solid #6DBFBA;
+        border-bottom: 10px solid #6DBFBA;
     }
     &-yellow{
-        border-bottom: 1px solid #FFD484;
+        border-bottom: 10px solid #FFD484;
+    }
+}
+
+.bg{
+    &-red{
+        background-color: #F76379;
+    }
+    &-blue{
+        background-color: #80D2FF;
+    }
+    &-green{
+        background-color: #6DBFBA;
+    }
+    &-yellow{
+        background-color: #FFD484;
     }
 }
 
@@ -74,4 +89,19 @@ a {
 
 .text-center{
     text-align: center;
+}
+
+.ic-jum {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    border-radius: 5px;
+    content: "&nbsp;";
+    
+  }
+
+.back-button__icon, .back-button__label{
+    fill: white;
+    color:white;
 }

@@ -1,5 +1,8 @@
 <template>
   <v-ons-page>
+    <v-ons-toolbar>
+      <div class="center">{{title}}</div>
+    </v-ons-toolbar>
     <v-ons-pull-hook :action="refresh" @changestate="state = $event.state">
       <span v-show="state === 'initial'">Pull to refresh</span>
       <span v-show="state === 'preaction'">Release</span>
@@ -68,11 +71,18 @@
     </template>
     <template v-else></template>
     <Jumbotron iconPos="left" :image="image2" class="text-right">
-      <h1>Incident Rate</h1>
+      <h1>Incident Rate</h1>Nilai incident rate di indonesia sebesar :
       <div class="text-big">
         <countTo :startVal="0" :endVal="statusIndo.incidentRate" :duration="2000" :decimals="5"></countTo>%
       </div>
     </Jumbotron>
+
+    <v-ons-card>
+      <div class="title">Stastik Kasus Covid19 di Negara Asean</div>
+      <div class="content">
+        <AseanBar/>
+      </div>
+    </v-ons-card>
   </v-ons-page>
 </template>
 
@@ -82,7 +92,9 @@ import countTo from "vue-count-to";
 import api from "../repository/covid19api";
 import TimeAgo from "vue2-timeago";
 import kawalApi from "../repository/kawalCovid";
+import AseanBar from "../components/AseanBar"
 export default {
+  props: ["title"],
   data: function() {
     return {
       allProvince: null,
@@ -97,13 +109,15 @@ export default {
         incidentRate: 0
       },
       image1: require("../assets/img/covid.png"),
-      image2: require("../assets/img/chart.png")
+      image2: require("../assets/img/chart.png"),
+      //chartjs
     };
   },
   components: {
     Jumbotron,
     countTo,
-    TimeAgo
+    TimeAgo,
+    AseanBar
   },
   methods: {
     async loadIndo() {
@@ -127,10 +141,16 @@ export default {
       };
       await this.loadIndo();
       done();
+    },
+    addData: function addData() {
+      this.dataset.push(this.dataentry);
+      this.labels.push(this.datalabel);
+      this.datalabel = "";
+      this.dataentry = "";
     }
   },
   mounted() {
-    this.loadTable();
+    //this.loadTable();
     this.loadIndo();
   },
   computed: {
@@ -139,7 +159,7 @@ export default {
     }
   },
   created() {
-    this.loadTable();
+    //this.loadTable();
   }
 };
 </script>

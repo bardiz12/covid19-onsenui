@@ -1,5 +1,8 @@
 <template>
   <v-ons-page>
+    <v-ons-toolbar>
+      <div class="center">{{title}}</div>
+    </v-ons-toolbar>
     <Jumbotron :image="image" :isRounded="true">
       Hi! My name is Bardizba. This Apps is intended to retreive the latest update of Covid-19 Statistics in Indonesia. Thanks to
       <a
@@ -35,6 +38,7 @@
 <script>
 import Jumbotron from "../components/SimJumbotron";
 export default {
+  props: ["title"],
   data() {
     return {
       image: require("../assets/img/profile.jpg"),
@@ -58,23 +62,31 @@ export default {
           icon: "fa-instagram",
           link: "https://instagram.com/bardiz12",
           label: "Instagram"
-        }
+        },
+        {
+          icon: "",
+          link: "https://www.dicoding.com/users/220176",
+          label: "Dicoding"
+        },
+        
       ],
-      thanks:[
-          "https://github.com/mathdroid/",
-          "http://github.com/OnsenUI",
-          "https://github.com/PanJiaChen/vue-countTo",
-          "https://kawalcorona.com/api/"
+      thanks: [
+        "https://github.com/mathdroid/",
+        "http://github.com/OnsenUI",
+        "https://github.com/PanJiaChen/vue-countTo",
+        "https://kawalcorona.com/api/",
+        "https://kawalcorona.com/",
+        "https://material.io/"
       ]
     };
   },
   components: {
     Jumbotron
   },
-  methods:{
-      goToLink(link){
-          window.location.href = link
-      }
+  methods: {
+    goToLink(link) {
+      window.location.href = link;
+    }
   }
 };
 </script>
