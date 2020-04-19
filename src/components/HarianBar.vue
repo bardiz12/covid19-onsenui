@@ -15,37 +15,13 @@ export default {
   },
   data: function() {
     return {
-      countries: [
-        "ID",
-        "MY",
-        "SG",
-        "TH",
-        "VN",
-        "PH",
-        "BN",
-        "LA",
-        "KH",
-        "Burma"
-      ],
-      countries_name: [
-        "Indonesia",
-        "Malaysia",
-        "Singapore",
-        "Thailand",
-        "Vietnam",
-        "Philiphines",
-        "Brunei",
-        "Laos",
-        "Cambodia",
-        "Burma"
-      ],
       datacollection: {
         labels: [],
         datasets: [
           {
             label: "Kasus Positif",
             backgroundColor: "rgba(0,0,0,0)",
-            pointBackgroundColor: "white",
+            pointBackgroundColor: "#FFD484",
             borderWidth: 5,
             pointBorderColor: "#FFD484",
             data: [0, 0],
@@ -54,7 +30,7 @@ export default {
           {
             label: "Meninggal",
             backgroundColor: "rgba(0,0,0,0)",
-            pointBackgroundColor: "white",
+            pointBackgroundColor: "#F76379",
             borderWidth: 5,
             pointBorderColor: "#F76379",
             data: [0, 20],
@@ -63,9 +39,18 @@ export default {
           {
             label: "Sembuh",
             backgroundColor: "rgba(0,0,0,0)",
-            pointBackgroundColor: "white",
+            pointBackgroundColor: "#6DBFBA",
             borderWidth: 5,
             pointBorderColor: "#6DBFBA",
+            data: [0, 20],
+            order: 2
+          },
+          {
+            label: "Kasus Baru",
+            backgroundColor: "rgba(0,0,0,0)",
+            pointBackgroundColor: "black",
+            borderWidth: 5,
+            pointBorderColor: "black",
             data: [0, 20],
             order: 2
           }
@@ -110,7 +95,7 @@ export default {
         },
         responsive: true,
         maintainAspectRatio: false,
-        height: 200
+        height: 600
       }
     };
   },
@@ -143,6 +128,7 @@ export default {
       this.datacollection.datasets[0].data = [];
       this.datacollection.datasets[1].data = [];
       this.datacollection.datasets[2].data = [];
+      this.datacollection.datasets[3].data = [];
 
       var options = {
         year: "numeric",
@@ -163,6 +149,7 @@ export default {
           this.datacollection.datasets[0].data.push(hari.jumlahKasusKumulatif);
           this.datacollection.datasets[1].data.push(hari.jumlahPasienMeninggal);
           this.datacollection.datasets[2].data.push(hari.jumlahPasienSembuh);
+          this.datacollection.datasets[3].data.push(hari.jumlahKasusBaruperHari);
         }
       }
       this.renderChart(this.datacollection, this.options);

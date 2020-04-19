@@ -85,7 +85,7 @@
     </v-ons-card>
 
     <v-ons-card>
-      <div class="title">Grafik Kasus Covid19 di Indonesia</div>
+      <div class="title">Grafik Harian Kasus Covid19 di Indonesia</div>
       <div class="content">
         <v-ons-card class="">
           <v-ons-row>
@@ -107,7 +107,7 @@
           </v-ons-row>
         </v-ons-card>
 
-        <HarianBar :mulai="mulai" :sampai="sampai" />
+        <HarianBar :height="600" :mulai="mulai" :sampai="sampai" />
       </div>
     </v-ons-card>
   </v-ons-page>
