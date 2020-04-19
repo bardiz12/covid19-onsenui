@@ -80,7 +80,34 @@
     <v-ons-card>
       <div class="title">Stastik Kasus Covid19 di Negara Asean</div>
       <div class="content">
-        <AseanBar/>
+        <AseanBar />
+      </div>
+    </v-ons-card>
+
+    <v-ons-card>
+      <div class="title">Grafik Kasus Covid19 di Indonesia</div>
+      <div class="content">
+        <v-ons-card class="">
+          <v-ons-row>
+            <v-ons-col>
+              Dari
+            </v-ons-col>
+            <v-ons-col>
+              Sampai
+            </v-ons-col>
+          </v-ons-row>
+
+          <v-ons-row>
+            <v-ons-col>
+              <v-ons-input  v-model="mulai" type="date"></v-ons-input>
+            </v-ons-col>
+            <v-ons-col>
+               <v-ons-input  v-model="sampai" type="date"></v-ons-input>
+            </v-ons-col>
+          </v-ons-row>
+        </v-ons-card>
+
+        <HarianBar :mulai="mulai" :sampai="sampai" />
       </div>
     </v-ons-card>
   </v-ons-page>
@@ -92,11 +119,16 @@ import countTo from "vue-count-to";
 import api from "../repository/covid19api";
 import TimeAgo from "vue2-timeago";
 import kawalApi from "../repository/kawalCovid";
-import AseanBar from "../components/AseanBar"
+import AseanBar from "../components/AseanBar";
+import HarianBar from "../components/HarianBar";
+
 export default {
   props: ["title"],
   data: function() {
     return {
+      mulai:"2020-03-02",
+      sampai:"2020-03-30",
+      chartData: null,
       allProvince: null,
       state: "initial",
       locale: "id",
@@ -109,7 +141,7 @@ export default {
         incidentRate: 0
       },
       image1: require("../assets/img/covid.png"),
-      image2: require("../assets/img/chart.png"),
+      image2: require("../assets/img/chart.png")
       //chartjs
     };
   },
@@ -117,7 +149,8 @@ export default {
     Jumbotron,
     countTo,
     TimeAgo,
-    AseanBar
+    AseanBar,
+    HarianBar
   },
   methods: {
     async loadIndo() {
@@ -152,6 +185,9 @@ export default {
   mounted() {
     //this.loadTable();
     this.loadIndo();
+    var date = new Date()
+
+    this.sampai = date.getFullYear() + "-" + (date.getMonth() < 9 ? "0" : "") + parseInt(date.getMonth() + 1) + "-" + date.getDate();
   },
   computed: {
     toRender() {
