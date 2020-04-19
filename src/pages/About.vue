@@ -74,9 +74,10 @@ export default {
         "https://github.com/mathdroid/",
         "http://github.com/OnsenUI",
         "https://github.com/PanJiaChen/vue-countTo",
-        "https://kawalcorona.com/api/",
         "https://kawalcorona.com/",
-        "https://material.io/"
+        "https://material.io/",
+        "https://www.netlify.com/",
+        "https://vuejs.org/"
       ]
     };
   },
