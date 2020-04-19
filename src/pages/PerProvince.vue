@@ -34,6 +34,9 @@
         <v-ons-card>hi</v-ons-card>
       </v-ons-list-item>
     </v-ons-list>
+    <div class="text-center p-full">
+      Tarik kebawah untuk merefresh Data
+    </div>
   </v-ons-page>
 </template>
 

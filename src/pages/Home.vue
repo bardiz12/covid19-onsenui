@@ -110,6 +110,9 @@
         <HarianBar :height="600" :mulai="mulai" :sampai="sampai" />
       </div>
     </v-ons-card>
+    <div class="text-center p-full">
+      Tarik kebawah untuk merefresh Data
+    </div>
   </v-ons-page>
 </template>
 
