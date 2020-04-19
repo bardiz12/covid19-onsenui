@@ -1,10 +1,13 @@
 <template>
   <v-ons-page>
     <v-ons-toolbar>
-      <div class="center">
-        {{title}}
-      </div>
+      <div class="center">{{title}}</div>
     </v-ons-toolbar>
+    <v-ons-pull-hook :action="refresh" @changestate="state = $event.state">
+      <span v-show="state === 'initial'">Pull to refresh</span>
+      <span v-show="state === 'preaction'">Release</span>
+      <span v-show="state === 'action'">Memuat Data...</span>
+    </v-ons-pull-hook>
     <Jumbotron
       :image="require('../assets/img/folder.png')"
     >Data Kasus COVID-19 berdasarkan Provinsi di Indonesia</Jumbotron>
@@ -23,7 +26,7 @@
           <v-ons-row>
             <v-ons-col>
               <v-ons-icon icon="md-info"></v-ons-icon>
-              &nbsp; {{item.attributes.Kasus_Posi}} Kasus
+              &nbsp; <countTo :startVal="0" :endVal="item.attributes.Kasus_Posi" :duration="2000"></countTo> Kasus
             </v-ons-col>
           </v-ons-row>
         </div>
@@ -35,24 +38,30 @@
 </template>
 
 <style lang="scss">
-
 </style>
 <script>
 import Jumbotron from "../components/SimJumbotron";
 import kawalApi from "../repository/kawalCovid";
 import detail from "../pages/DetailProvince";
+import countTo from "vue-count-to"
 export default {
-
   components: {
-    Jumbotron
+    Jumbotron,
+    countTo
   },
   data() {
     return {
-      title:"Data Covid19 Provinsi",
+      state: "initial",
+      title: "Data Covid19 Provinsi",
       allProvince: []
     };
   },
   methods: {
+    async refresh(done) {
+      this.allProvince = []
+      await this.loadTable();
+      done();
+    },
     async loadTable() {
       const { data } = await kawalApi.getAllProvince();
       this.allProvince = data.data;
@@ -62,10 +71,10 @@ export default {
       let that = this;
       this.$emit("push-page", {
         extends: detail,
-        data(){
-          return  {
+        data() {
+          return {
             province: that.allProvince[index]
-          } 
+          };
         }
       });
     }
