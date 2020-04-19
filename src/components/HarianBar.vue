@@ -176,8 +176,10 @@ export default {
     mulai() {
       this.createChart();
     },
-    sampai() {
-      this.createChart();
+    sampai(val) {
+      if(val != undefined){
+          this.createChart();
+      }
     }
   },
   mounted() {
