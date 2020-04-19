@@ -105,3 +105,12 @@ a {
     fill: white;
     color:white;
 }
+
+iframe 
+{
+ display: block; 
+ width: 100%; 
+ border: none; 
+ overflow-y: auto; 
+ overflow-x: hidden;
+}

@@ -18,7 +18,8 @@ Vue.use(VueTable);
 
 Vue.config.productionTip = false
 
-var app = new Vue({
+var app = 
+new Vue({
   render: h => h(App)
 }).$mount('#app')
 

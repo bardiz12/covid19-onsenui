@@ -18,6 +18,7 @@
 import Home from "./pages/Home";
 import About from "./pages/About";
 import DataProvince from "./pages/DataProvince.vue";
+import News from "./pages/News.vue";
 export default {
   name: "App",
 
@@ -49,6 +50,16 @@ export default {
             title: "Data Provinsi",
           },
           key: "provinciPage"
+        },
+        {
+          icon: "md-rss",
+          title: "Berita",
+          label: "Berita",
+          page: News,
+          props: {
+            title: "Berita",
+          },
+          key: "newsPage"
         },
         {
           icon: "md-info",
