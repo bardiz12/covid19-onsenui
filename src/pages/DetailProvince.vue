@@ -4,14 +4,20 @@
       <div class="left">
         <v-ons-back-button style="color:white">Back</v-ons-back-button>
       </div>
-      <div class="center">Status di {{allProvince[index].provinsi}}</div>
+      <div
+        class="center"
+        style="text-overflow: ellipsis; overflow:hidden"
+      >Status di {{allProvince[index].provinsi}}</div>
     </v-ons-toolbar>
 
     <v-ons-carousel swipeable auto-scroll :index.sync="index">
       <v-ons-carousel-item v-for="(item,key) in allProvince" :key="item.fid">
         <!--<div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">{{key}}</div>-->
 
-        <div style="text-align: center; color: rgb(74, 74, 74); width: 100%; margin-top: 30px;">
+        <div
+          v-if="[index-1,index,index+1].includes(key)"
+          style="text-align: center; color: rgb(74, 74, 74); width: 100%; margin-top: 30px;"
+        >
           <div
             style="text-transform: uppercase; font-size: 24px; line-height: 24px;"
           >{{item.provinsi}}</div>
@@ -59,12 +65,14 @@
                   :endVal="item.kasusMeni"
                   :duration="2000"
                 ></countTo>
+                <template v-else>0</template>
               </div>
               <div style="font-size: 14px; font-weight: 400;">Meninggal</div>
             </div>
             <div style="flex-grow: 1; display: flex; flex-direction: column;">
               <div style="font-size: 60px;">
                 <countTo v-if="index == key" :endVal="item.kasusSemb" :duration="2000"></countTo>
+                <template v-else>0</template>
               </div>
               <div style="font-size: 14px; font-weight: 400;">Sembuh</div>
             </div>
@@ -73,13 +81,12 @@
             <div style="flex-grow: 1; display: flex; flex-direction: column;">
               <div style="font-size: 60px;">
                 <countTo v-if="index == key" :endVal="item.kasusPosi" :duration="2000"></countTo>
+                <template v-else>0</template>
               </div>
               <div style="font-size: 14px; font-weight: 400;">Kasus</div>
             </div>
           </div>
-          <div style="font-size:10pt;color:#888">
-            Usap layar untuk melihat Provinsi lain
-          </div>
+          <div style="font-size:10pt;color:#888">Usap layar untuk melihat Provinsi lain</div>
         </div>
       </v-ons-carousel-item>
     </v-ons-carousel>

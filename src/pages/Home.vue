@@ -129,7 +129,6 @@ import Jumbotron from "../components/SimJumbotron";
 import countTo from "vue-count-to";
 import api from "../repository/covid19api";
 import TimeAgo from "vue2-timeago";
-import kawalApi from "../repository/kawalCovid";
 import AseanBar from "../components/AseanBar";
 import HarianBar from "../components/HarianBar";
 import multiselect from "vue-multiselect";
@@ -194,12 +193,7 @@ export default {
       const { data } = await api.getConfirmed("ID");
       this.statusIndo = data[0];
     },
-    async loadTable() {
-      const { data } = await kawalApi.getAllProvince();
-      this.allProvince = data;
-      console.log(this.allProvince);
-      await this.$nextTick();
-    },
+    
     async refresh(done) {
       this.statusIndo = {
         lastUpdate: null,
@@ -220,7 +214,6 @@ export default {
     }
   },
   mounted() {
-    //this.loadTable();
     this.loadIndo();
    
 
