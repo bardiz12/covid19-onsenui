@@ -27,7 +27,7 @@
     <v-ons-card>
       <div class="content">
         <v-ons-list>
-          <v-ons-list-header>This apps builded using :</v-ons-list-header>
+          <v-ons-list-header>Thanks to</v-ons-list-header>
           <v-ons-list-item v-for="thank in thanks" :key="thank" @click="goToLink(thank)">{{thank}}</v-ons-list-item>
         </v-ons-list>
       </div>
