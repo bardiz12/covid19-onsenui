@@ -17,8 +17,12 @@
 <script>
 import Home from "./pages/Home";
 import About from "./pages/About";
-import DataProvince from "./pages/DataProvince.vue";
-import News from "./pages/News.vue";
+import DataProvince from "./pages/DataProvince";
+import News from "./pages/News";
+
+// const About = () => import("./pages/About");
+// const DataProvince = () => import("./pages/DataProvince.vue");
+//const News = () => import("./pages/News.vue");
 export default {
   name: "App",
 

@@ -80,7 +80,13 @@
     <v-ons-card>
       <div class="title">Stastik Kasus Covid19 di Negara Asean</div>
       <div class="content">
-        <AseanBar />
+        
+        <AseanBar :countries="selected" />
+        <div style="font-size:5pt !important">
+          <multiselect v-model="selected" :options="countries" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Pick some" label="name" track-by="name" :preselect-first="true" multiple>
+             <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length && !isOpen">{{ values.length }} Negara ditampilkan</span></template>
+          </multiselect>
+        </div>
       </div>
     </v-ons-card>
 
@@ -116,6 +122,8 @@
   </v-ons-page>
 </template>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
 <script>
 import Jumbotron from "../components/SimJumbotron";
 import countTo from "vue-count-to";
@@ -124,11 +132,36 @@ import TimeAgo from "vue2-timeago";
 import kawalApi from "../repository/kawalCovid";
 import AseanBar from "../components/AseanBar";
 import HarianBar from "../components/HarianBar";
-
+import multiselect from "vue-multiselect";
 export default {
   props: ["title"],
   data: function() {
     return {
+      
+      countries: [
+        {key: "ID", name:"Indonesia"},
+        {key: "MY", name:"Malaysia"},
+        {key: "SG", name:"Singapore"},
+        {key: "TH", name:"Thailand"},
+        {key: "VN", name:"Vietnam"},
+        {key: "PH", name:"Philiphines"},
+        {key: "BN", name:"Brunei"},
+        {key: "LA", name:"Laos"},
+        {key: "KH", name:"Cambodia"},
+        {key: "Burma", name:"Burma"}
+      ],
+      selected: [
+        {key: "ID", name:"Indonesia"},
+        {key: "MY", name:"Malaysia"},
+        {key: "SG", name:"Singapore"},
+        {key: "TH", name:"Thailand"},
+        {key: "VN", name:"Vietnam"},
+        {key: "PH", name:"Philiphines"},
+        {key: "BN", name:"Brunei"},
+        {key: "LA", name:"Laos"},
+        {key: "KH", name:"Cambodia"},
+        {key: "Burma", name:"Burma"}
+      ],
       mulai:"2020-03-02",
       sampai:"2020-03-30",
       chartData: null,
@@ -153,7 +186,8 @@ export default {
     countTo,
     TimeAgo,
     AseanBar,
-    HarianBar
+    HarianBar,
+    multiselect
   },
   methods: {
     async loadIndo() {
@@ -188,9 +222,9 @@ export default {
   mounted() {
     //this.loadTable();
     this.loadIndo();
-    var date = new Date()
+   
 
-    this.sampai = date.getFullYear() + "-" + (date.getMonth() < 9 ? "0" : "") + parseInt(date.getMonth() + 1) + "-" + date.getDate();
+    
   },
   computed: {
     toRender() {
@@ -198,7 +232,8 @@ export default {
     }
   },
   created() {
-    //this.loadTable();
+     var date = new Date()
+    this.sampai = date.getFullYear() + "-" + (date.getMonth() < 9 ? "0" : "") + parseInt(date.getMonth() + 1) + "-" + date.getDate();
   }
 };
 </script>

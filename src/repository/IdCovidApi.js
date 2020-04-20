@@ -8,6 +8,9 @@ const client = axios.create({
 export default {
     getHarian(){
         return client.get("/harian")
+    },
+    getProvinsi(){
+        return client.get("/provinsi")
     }
     
 }

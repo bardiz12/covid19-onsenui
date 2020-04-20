@@ -85,6 +85,7 @@ export default {
         tooltips: {
           enabled: true,
           mode: "index",
+          intersect:false,
           callbacks: {
             label: function(tooltipItems, data) {
               //console.log(data.datasets, tooltipItems);
@@ -131,7 +132,6 @@ export default {
       this.datacollection.datasets[3].data = [];
 
       var options = {
-        year: "numeric",
         month: "long",
         day: "numeric"
       };

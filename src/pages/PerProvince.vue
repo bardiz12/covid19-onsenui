@@ -14,19 +14,19 @@
     <v-ons-list>
       <v-ons-list-item v-for="(item,i) in allProvince" :key="i" tappable @click="push(i)">
         <div class="left">
-          <div class="ic-jum bg-red" v-if="item.attributes.Kasus_Posi > 1000"></div>
-          <div class="ic-jum bg-yellow" v-else-if="item.attributes.Kasus_Posi > 500"></div>
-          <div class="ic-jum bg-green" v-else-if="item.attributes.Kasus_Posi > 10"></div>
+          <div class="ic-jum bg-red" v-if="item.kasusPosi > 1000"></div>
+          <div class="ic-jum bg-yellow" v-else-if="item.kasusPosi > 500"></div>
+          <div class="ic-jum bg-green" v-else-if="item.kasusPosi > 10"></div>
           <div class="ic-jum bg-blue" v-else></div>
         </div>
         <div class="center">
           <v-ons-row>
-            <strong>{{item.attributes.Provinsi}}</strong>
+            <strong>{{item.provinsi}}</strong>
           </v-ons-row>
           <v-ons-row>
             <v-ons-col>
               <v-ons-icon icon="md-info"></v-ons-icon>
-              &nbsp; <countTo :startVal="0" :endVal="item.attributes.Kasus_Posi" :duration="2000"></countTo> Kasus
+              &nbsp; <countTo :startVal="0" :endVal="item.kasusPosi" :duration="2000"></countTo> Kasus
             </v-ons-col>
           </v-ons-row>
         </div>
@@ -44,7 +44,7 @@
 </style>
 <script>
 import Jumbotron from "../components/SimJumbotron";
-import kawalApi from "../repository/kawalCovid";
+import api from "../repository/IdCovidApi";
 import detail from "../pages/DetailProvince";
 import countTo from "vue-count-to"
 export default {
@@ -66,7 +66,7 @@ export default {
       done();
     },
     async loadTable() {
-      const { data } = await kawalApi.getAllProvince();
+      const { data } = await api.getProvinsi();
       this.allProvince = data.data;
       await this.$nextTick();
     },
@@ -76,7 +76,10 @@ export default {
         extends: detail,
         data() {
           return {
-            province: that.allProvince[index]
+            province: that.allProvince[index],
+            allProvince: that.allProvince,
+            index,
+            
           };
         }
       });
