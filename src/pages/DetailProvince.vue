@@ -45,14 +45,14 @@
               class="ic-jum bg-green"
               v-else-if="item.kasusPosi > 10"
             >
-              <span style="margin:auto">SMALL</span>
+              <span style="margin:auto">LOW</span>
             </div>
             <div
               style="width:100px;height:100px;margin:auto;font-size:12pt;color:white"
               class="ic-jum bg-blue"
               v-else
             >
-              <span style="margin:auto">VERY SMALL</span>
+              <span style="margin:auto">VERY LOW</span>
             </div>
           </div>
 
