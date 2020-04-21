@@ -15,7 +15,7 @@
         <!--<div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">{{key}}</div>-->
 
         <div
-          v-if="[index-1,index,index+1].includes(key)"
+          v-if="arrayTiga.includes(key)"
           style="text-align: center; color: rgb(74, 74, 74); width: 100%; margin-top: 30px;"
         >
           <div
@@ -109,6 +109,15 @@ export default {
     onSwipe(index, animationOptions) {
       console.log(index, animationOptions);
       this.startVal = Math.random();
+    }
+  },
+  computed:{
+    arrayTiga(){
+      let i = this.index;
+      if(i == null){
+        i = 0
+      }
+      return [i-1,i,i+1]
     }
   }
 };
