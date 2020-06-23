@@ -13,7 +13,6 @@
     <v-ons-carousel swipeable auto-scroll :index.sync="index">
       <v-ons-carousel-item v-for="(item,key) in allProvince" :key="item.fid">
         <!--<div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">{{key}}</div>-->
-
         <div
           v-if="arrayTiga.includes(key)"
           style="text-align: center; color: rgb(74, 74, 74); width: 100%; margin-top: 30px;"

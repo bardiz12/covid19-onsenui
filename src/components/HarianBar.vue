@@ -20,12 +20,13 @@ export default {
         datasets: [
           {
             label: "Kasus Positif",
-            backgroundColor: "rgba(0,0,0,0)",
+            backgroundColor: "#FFD484",
             pointBackgroundColor: "#FFD484",
             borderWidth: 5,
             pointBorderColor: "#FFD484",
             data: [0, 0],
-            order: 3
+            order: 3,
+            fill:false,
           },
           {
             label: "Meninggal",
@@ -34,7 +35,8 @@ export default {
             borderWidth: 5,
             pointBorderColor: "#F76379",
             data: [0, 20],
-            order: 1
+            order: 1,
+            fill:false,
           },
           {
             label: "Sembuh",
@@ -43,7 +45,8 @@ export default {
             borderWidth: 5,
             pointBorderColor: "#6DBFBA",
             data: [0, 20],
-            order: 2
+            order: 2,
+            fill:false,
           },
           {
             label: "Kasus Baru",
@@ -52,7 +55,8 @@ export default {
             borderWidth: 5,
             pointBorderColor: "black",
             data: [0, 20],
-            order: 2
+            order: 2,
+            fill:false,
           }
         ]
       },
@@ -71,7 +75,8 @@ export default {
           xAxes: [
             {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                display: false,
               },
               gridLines: {
                 display: false
@@ -80,7 +85,11 @@ export default {
           ]
         },
         legend: {
-          display: false
+          display: true,
+          position: "bottom",
+          flabels: {
+                fontColor: 'rgb(255, 99, 132)'
+            }
         },
         tooltips: {
           enabled: true,
@@ -91,7 +100,8 @@ export default {
               //console.log(data.datasets, tooltipItems);
               var str = data.datasets[tooltipItems.datasetIndex].label;
               return tooltipItems.yLabel + " " + str;
-            }
+            },
+            
           }
         },
         responsive: true,
